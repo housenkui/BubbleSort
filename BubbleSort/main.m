@@ -39,17 +39,17 @@ void BubbleSort(long a[],long n){
     long i = 0;
     
     
-    for (; i < n; i++) {
+    for (; i < n-1; i++) {
         
-        for (j = i+1; j < n; j++) {
+        for (j = 0; j < n-i-1; j++) {
             
             compareCount++;
             
-            if (a[j] < a[i]) {//关键码的比较    //数组中的值在比较，但是一般不这样叫，当数组中的值在比较时叫做关键码  YY? 书上就是这么叫的
+            if (a[j] > a[j+1]) {//关键码的比较    //数组中的值在比较，但是一般不这样叫，当数组中的值在比较时叫做关键码  YY? 书上就是这么叫的
                 
-                temp  = a[j];
-                a[j]  = a[i];//记录的移动     //数组中的值在移动，但是一般不这样叫，当数组中的值在移动时叫做记录  YY?书上就是这么叫的
-                a[i]  = temp;
+                temp  = a[j+1];
+                a[j+1]  = a[j];//记录的移动     //数组中的值在移动，但是一般不这样叫，当数组中的值在移动时叫做记录  YY?书上就是这么叫的
+                a[j]  = temp;
                 
                 
                 moveCount += 3;
@@ -87,8 +87,22 @@ int main(int argc, const char * argv[]) {
             Array[i]  =arc4random()%N;
             
         }
+
+        for (long i = 0; i < N; i ++) {
+            
+            printf("Array[%ld] = %ld\n",i,Array[i]);
+        }
         
         BubbleSort(Array,N);
+        
+        
+        printf("排序后的数组Array\n");
+        
+        for (int i = 0; i < N; i ++) {
+            
+            printf("Array[%d] = %ld\n",i,Array[i]);
+        }
+
         
         
     }
