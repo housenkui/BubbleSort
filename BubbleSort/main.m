@@ -30,7 +30,7 @@
 
 
 //这里传入数组的首地址 和数组的长度
-void BubbleSort(long a[],long n){
+void BubbleSort1_0(long a[],long n){
     //升序排序
     long compareCount = 0;
     long moveCount    = 0;
@@ -76,31 +76,70 @@ void BubbleSort(long a[],long n){
 }
 
 
+//每一趟排序在两两比较的过程中找到较大值  "正向交换"，找到较小值"逆向交换"，这样每趟排序就会多做一些比较和移动，相比1_0版本的冒泡排序看似效率更好，其实效率一样！！!因为始终是相邻的两个元素移动，没有跳跃式的移动，
+void BubbleSort_1_1(int a[],int n){
+
+
+    int low =0;
+    int high = n-1;
+    int temp,j;
+    while (low <high) {
+        
+        for (j = low ; j< high; j++) {
+            
+            
+            if (a[j]>a[j+1]) {
+                
+                temp = a[j+1];
+                a[j+1] = a[j];
+                a[j]   = temp;
+                
+            }
+            
+        }
+        high--;
+        for (j = high; j>low; j--) {
+            
+            
+            if (a[j]<a[j-1]) {
+                
+                temp = a[j];
+                a[j] = a[j-1];
+                a[j-1]= temp;
+                
+            }
+            
+        }
+        low++;
+    }
+   
+}
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        long Array[N] ={0};
+        int Array[N] ={0};
         
         //生成随机的数组
-        for (long i = 0; i < N; i++) {
+        for (int i = 0; i < N; i++) {
             
             Array[i]  =arc4random()%N;
             
         }
 
-        for (long i = 0; i < N; i ++) {
+        printf("排序前的数组Array\n");
+
+        for (int i = 0; i < N; i ++) {
             
-            printf("Array[%ld] = %ld\n",i,Array[i]);
+            printf("Array[%d] = %d\n",i,Array[i]);
         }
         
-        BubbleSort(Array,N);
-        
+        BubbleSort_1_1(Array,N);
         
         printf("排序后的数组Array\n");
         
         for (int i = 0; i < N; i ++) {
             
-            printf("Array[%d] = %ld\n",i,Array[i]);
+            printf("Array[%d] = %d\n",i,Array[i]);
         }
 
         
